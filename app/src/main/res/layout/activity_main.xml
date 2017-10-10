@@ -25,6 +25,12 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/btnGoToSecondMainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_second" />
+
+    <Button
         android:id="@+id/btnReaderMainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +48,9 @@
         android:layout_height="wrap_content"
         android:text="@string/update_list" />
 
-
+<ListView
+    android:id="@+id/lvAllInfoMainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></ListView>
 
 </LinearLayout>
