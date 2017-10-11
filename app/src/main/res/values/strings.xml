@@ -3,5 +3,9 @@
     <string name="add">Add</string>
     <string name="read">Read into Android Monitor</string>
     <string name="update_list">Update List</string>
-    <string name="go_to_second">Update List</string>
+    <string name="go_to_second">Go to database list</string>
+    <string name="updateThirdActivity">Update</string>
+    <string name="update_thirdActivity">Update</string>
+    <string name="update_third_activity">Update</string>
+    <string name="delete_third_activity">Delete</string>
 </resources>

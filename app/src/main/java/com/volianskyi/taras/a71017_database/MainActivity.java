@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -17,11 +18,18 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase sqLiteDatabase;
     private ListView listView;
+    private EditText etName;
+    private EditText etPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
+    }
+
+    private void initViews() {
         Button btnRead = (Button) findViewById(R.id.btnReaderMainActivity);
         Button btnAdd = (Button) findViewById(R.id.btnAddMainActivity);
         Button btnUpdateList = (Button) findViewById(R.id.btnUpdateListMainActivity);
@@ -30,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdd.setOnClickListener(this);
         btnUpdateList.setOnClickListener(this);
         btnGoToSecond.setOnClickListener(this);
-
+        etName = (EditText) findViewById(R.id.etNameThirdActivity);
+        etPass = (EditText) findViewById(R.id.etPassThirdActivity);
+        listView = (ListView) findViewById(R.id.lvAllInfoMainActivity);
     }
 
     @Override
@@ -38,13 +48,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStart();
         DBHelper dbHelper = new DBHelper(this, 1);
         sqLiteDatabase = dbHelper.getWritableDatabase();//read & write to db
-        listView = (ListView) findViewById(R.id.lvAllInfoMainActivity);
     }
 
     @Override
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
+            case R.id.btnGoToSecondMainActivity:
+                Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, SecondActivity.class);
+                intent.putExtra("Number", 15);
+                startActivity(intent);
+                break;
             case R.id.btnReaderMainActivity:
                 Cursor cursor = sqLiteDatabase.query("USERS", null, null, null, null, null, null);
                 Log.d("Database", "Cursor size is - " + cursor.getCount());
@@ -59,12 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnAddMainActivity:
                 //sqLiteDatabase.execSQL(String.format("INSERT INTO USERS (NAME, PASS) VALUES ('%s','%s')", "Roman", "qwerty"));
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("NAME", "Sergiy");
+                contentValues.put("NAME", "Df");
                 contentValues.put("PASS", "asdfg");
                 //Log.d("Database", "Insert - "+ sqLiteDatabase.insert("USERS", null, contentValues));
-                //sqLiteDatabase.insert("USERS", null, contentValues);
+                sqLiteDatabase.insert("USERS", null, contentValues);
                 //sqLiteDatabase.update("USERS", contentValues, "_id = ?", new String[]{"1"});//for update
-                Log.d("Database", "Deleted - " + sqLiteDatabase.delete("USERS", null , null));
+                //Log.d("Database", "Deleted - " + sqLiteDatabase.delete("USERS", null , null));
                 //sqLiteDatabase.delete("USERS","_id = ?", new String[]{"1"});
                 break;
             case R.id.btnUpdateListMainActivity:
@@ -75,11 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursorList, new String[]{"NAME"}, new int[]{android.R.id.text1}, Adapter.NO_SELECTION);
                 listView.setAdapter(simpleCursorAdapter);
                 break;
-            case R.id.btnGoToSecondMainActivity:
-                Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
-                intent = new Intent(this, SecondActivity.class);
-                intent.putExtra("Number", 15);
-                startActivity(intent);
         }
     }
 }
