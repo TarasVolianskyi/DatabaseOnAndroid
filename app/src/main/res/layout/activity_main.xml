@@ -8,9 +8,16 @@
     tools:context="com.volianskyi.taras.a71017_database.MainActivity">
 
     <TextView
+        android:id="@+id/tvNameMainActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+         />
+
+    <TextView
+        android:id="@+id/tvPassMainActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
     <EditText
         android:id="@+id/etNameMAinActivity"
@@ -21,6 +28,7 @@
     <EditText
         android:id="@+id/etPassMainActivity"
         android:hint="Pass"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

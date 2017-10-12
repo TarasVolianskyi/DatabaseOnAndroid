@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView listView;
     private EditText etName;
     private EditText etPass;
+    private TextView tvName;
+    private TextView tvPass;
 
 
     @Override
@@ -38,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdd.setOnClickListener(this);
         btnUpdateList.setOnClickListener(this);
         btnGoToSecond.setOnClickListener(this);
-        etName = (EditText) findViewById(R.id.etNameThirdActivity);
-        etPass = (EditText) findViewById(R.id.etPassThirdActivity);
+        etName = (EditText) findViewById(R.id.etNameMAinActivity);
+        etPass = (EditText) findViewById(R.id.etPassMainActivity);
         listView = (ListView) findViewById(R.id.lvAllInfoMainActivity);
+        tvName = (TextView) findViewById(R.id.tvNameMainActivity);
+        tvPass = (TextView) findViewById(R.id.tvPassMainActivity);
     }
 
     @Override
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Intent intent = null;
+
+
         switch (view.getId()) {
             case R.id.btnGoToSecondMainActivity:
                 Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
@@ -73,14 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnAddMainActivity:
                 //sqLiteDatabase.execSQL(String.format("INSERT INTO USERS (NAME, PASS) VALUES ('%s','%s')", "Roman", "qwerty"));
+                String nameForAdd = etName.getText().toString();
+                String passForAdd = etPass.getText().toString();
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("NAME", "Df");
-                contentValues.put("PASS", "asdfg");
+                contentValues.put("NAME", nameForAdd);
+                contentValues.put("PASS", passForAdd);
                 //Log.d("Database", "Insert - "+ sqLiteDatabase.insert("USERS", null, contentValues));
                 sqLiteDatabase.insert("USERS", null, contentValues);
                 //sqLiteDatabase.update("USERS", contentValues, "_id = ?", new String[]{"1"});//for update
                 //Log.d("Database", "Deleted - " + sqLiteDatabase.delete("USERS", null , null));
                 //sqLiteDatabase.delete("USERS","_id = ?", new String[]{"1"});
+                //doSomething();
                 break;
             case R.id.btnUpdateListMainActivity:
                 Log.d("Database", "Cursor size is - " + 5);
@@ -91,5 +101,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 listView.setAdapter(simpleCursorAdapter);
                 break;
         }
+    }
+
+    private void doSomething() {
+        tvName.setText(etName.getText());
+        tvPass.setText(etPass.getText());
     }
 }

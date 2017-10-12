@@ -46,7 +46,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(SecondActivity.this, "You click here - ", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
-                intent.putExtra("NumberOfChosedItem", view.getTag()+"");
+                intent.putExtra("NumberOfChosedItem", l);
                 startActivity(intent);
             }
         });
