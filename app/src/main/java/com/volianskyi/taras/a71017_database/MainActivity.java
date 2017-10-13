@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("Number", 15);
                 startActivity(intent);
                 break;
-            case R.id.btnReaderMainActivity:
+           /* case R.id.btnReaderMainActivity:
                 Cursor cursor = sqLiteDatabase.query("USERS", null, null, null, null, null, null);
                 Log.d("Database", "Cursor size is - " + cursor.getCount());
                 cursor.moveToFirst();
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String pass = cursor.getString(cursor.getColumnIndex("PASS"));
                     Log.d("Database", "ID is - " + id + " Name is - " + name + " Pass is - " + pass);
                 } while (cursor.moveToNext());
-                break;
+                break;*/
             case R.id.btnAddMainActivity:
                 //sqLiteDatabase.execSQL(String.format("INSERT INTO USERS (NAME, PASS) VALUES ('%s','%s')", "Roman", "qwerty"));
                 String nameForAdd = etName.getText().toString();
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //sqLiteDatabase.update("USERS", contentValues, "_id = ?", new String[]{"1"});//for update
                 //Log.d("Database", "Deleted - " + sqLiteDatabase.delete("USERS", null , null));
                 //sqLiteDatabase.delete("USERS","_id = ?", new String[]{"1"});
-                //doSomething();
                 break;
             case R.id.btnUpdateListMainActivity:
                 Log.d("Database", "Cursor size is - " + 5);
@@ -101,10 +100,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 listView.setAdapter(simpleCursorAdapter);
                 break;
         }
-    }
-
-    private void doSomething() {
-        tvName.setText(etName.getText());
-        tvPass.setText(etPass.getText());
     }
 }

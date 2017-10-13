@@ -16,16 +16,14 @@ import android.widget.Toast;
 public class SecondActivity extends AppCompatActivity {
 
     private SQLiteDatabase sqLiteDatabase;
-    // private ListView listView;
-    TextView tv;
+      TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         tv = (TextView) findViewById(R.id.tvHelloTextSecondActivity);
-        //onStart();
-    }
+            }
 
     @Override
     protected void onStart() {
